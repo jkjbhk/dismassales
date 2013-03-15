@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: MyString
+  title: MyString
+  category: 
+  description: MyString
+  price: 9.99
+  enabled: false
+  show_on_home: false
+
+two:
+  code: MyString
+  title: MyString
+  category: 
+  description: MyString
+  price: 9.99
+  enabled: false
+  show_on_home: false
