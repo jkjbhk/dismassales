@@ -1,57 +1,92 @@
 <style>
+	body {
+		background-color:#f0eadb
+	}
+
     #categories {
     	width: 176px;
-        height: 800px;
+        height: 400px;
         float: left;
         border-width:2px;
         border-style:solid;
         border-color: #999;
         margin: 10px;
+        clear: both; 
+        background-color:#fff;
     }
 
     #wrap {
     	width: 1000px;
     }
 
+    #header {
+
+    }
+
     #content {
-    	width: 800px;
-        height: 800px;
+    	width: 736px;
+        height: 400px;
         float: right;
+        background-color:#fff;
+        padding: 20px;
+        margin: 10px;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
     }
 
     #thumbnails {
     	width: 200px;
-        height: 500px;
+        height: 300px;
         float: left;
     }
 
     #producttitlewrap {
-    	width: 580px;
-        height: 500px;
+    	width: 516px;
+        height: 200px;
         float: right;
         margin: 10px;
     }
 
     #pricecartwrap {
-		width: 580px;
-        height: 500px;
+		width: 516px;
+        height: 100px;
         margin: 0px;
     }
 
     #pricewrap {
     	width: 180px;
-        height: 500px;
+        height: 100px;
         margin: 0px;
         float: left;
-        background-color:#00ff00;
         text-align: center;
     }
 
-    #addtocart {
-    	width: 400;
-        height: 500px;
+    #logotype {
+    	width: 200px;
+        height: 100px;
+        margin: 0px;
+        float: left;
+    }
+
+    #information {
+    	width: 760px;
+        height: 100px;
         margin: 0px;
         float: right;
+        text-align: left;
+        padding:20px;
+    }
+
+    #description {
+		clear: both;
+    }
+
+    .thumbnailcontainer {
+    	width: 200px;
+        height: 200px;
+        display: table-cell;
+        vertical-align: middle 
     }
 
 </style>
@@ -62,9 +97,18 @@
 </script>
 
 <div id="wrap">
+	<div id="header">
+		<div id="logotype">
+			<%= image_tag("logo_small.png") %>
+		</div>
+		<div id="information">
+			Hello guest! | My orders | Login
+		</div>
+	</div>
 	<div id="categories">
+		<h5>Categories:</h5>
 		<% @categories.each do |category| %>
-			<%= category.title %>
+			<%= link_to category.title, storefront_path(:category_id => category.id) %>
 		<% end %>
 	</div>
 
@@ -72,11 +116,13 @@
 		<div id="thumbnails">
 			<div class="flexslider">
 				<ul class="slides">
-				<% @item.item_images.each do |item_image| %>
-					<li>
-						<%= link_to image_tag(item_image.image.url(:thumb)), {:action => 'index', :controller => 'items'}, :class => 'dock-item' %>
-					</li>
-				<% end %>
+					<% @item.item_images.each do |item_image| %>
+						<li>
+							<div class="thumbnailcontainer">
+								<%= link_to image_tag(item_image.image.url(:thumb)), {:action => 'index', :controller => 'items'}, :class => 'dock-item' %>
+							</div>
+						</li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
@@ -93,11 +139,12 @@
 				</div>
 			</div>
 		</div>
-
-		<p>
-		  <b>Description:</b>
-		  <%= @item.description %>
-		</p>
+		<div id="description">
+			<p>
+			  <b>Description:</b>
+			  <%= @item.description %>
+			</p>
+		</div>
 
 	</div>
 </div>
