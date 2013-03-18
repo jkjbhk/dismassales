@@ -1,0 +1,103 @@
+<style>
+    #categories {
+    	width: 176px;
+        height: 800px;
+        float: left;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
+        margin: 10px;
+    }
+
+    #wrap {
+    	width: 1000px;
+    }
+
+    #content {
+    	width: 800px;
+        height: 800px;
+        float: right;
+    }
+
+    #thumbnails {
+    	width: 200px;
+        height: 500px;
+        float: left;
+    }
+
+    #producttitlewrap {
+    	width: 580px;
+        height: 500px;
+        float: right;
+        margin: 10px;
+    }
+
+    #pricecartwrap {
+		width: 580px;
+        height: 500px;
+        margin: 0px;
+    }
+
+    #pricewrap {
+    	width: 180px;
+        height: 500px;
+        margin: 0px;
+        float: left;
+        background-color:#00ff00;
+        text-align: center;
+    }
+
+    #addtocart {
+    	width: 400;
+        height: 500px;
+        margin: 0px;
+        float: right;
+    }
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider();
+  });
+</script>
+
+<div id="wrap">
+	<div id="categories">
+		<% @categories.each do |category| %>
+			<%= category.title %>
+		<% end %>
+	</div>
+
+	<div id="content">
+		<div id="thumbnails">
+			<div class="flexslider">
+				<ul class="slides">
+				<% @item.item_images.each do |item_image| %>
+					<li>
+						<%= link_to image_tag(item_image.image.url(:thumb)), {:action => 'index', :controller => 'items'}, :class => 'dock-item' %>
+					</li>
+				<% end %>
+				</ul>
+			</div>
+		</div>
+		<div id="producttitlewrap">
+			<h1><%= @item.code %> - <%= @item.title %></h1>
+			<%= @item.category.title %></br>
+			<div id="pricecartwrap">
+				<div id="pricewrap">
+					<h3><%= number_to_currency(@item.price) %></h3>
+				</div>
+				<div id="addtocart">
+					<%= text_field_tag('quantity', '1', :maxlength => 3, :size => 3) %>
+					<%= button_to "ADD TO CART", items_path, :method => "get" %>
+				</div>
+			</div>
+		</div>
+
+		<p>
+		  <b>Description:</b>
+		  <%= @item.description %>
+		</p>
+
+	</div>
+</div>

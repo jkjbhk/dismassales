@@ -15,6 +15,8 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
 
+    @item_image = ItemImage.all.first
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
@@ -35,6 +37,9 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @item = Item.find(params[:id])
+
+    @item_image = ItemImage.new
+    @item_image.item = @item
   end
 
   # POST /items
@@ -78,6 +83,23 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url }
       format.json { head :no_content }
+    end
+  end
+
+  def add_image
+    logger.info ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    logger.info params.inspect
+    @item_image = ItemImage.new(params[:item_image])
+    @item_image.save
+
+    respond_to do |format|
+      if @item_image.save
+        format.html { redirect_to @item_image.item, notice: 'Image was successfully added.' }
+        format.json { render json: @item_image.item, status: :created, location: @item_image.item }
+      else
+        format.html { render action: "add_image" }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
     end
   end
 end

@@ -1,0 +1,42 @@
+<%-#Storefront view %>
+
+<style>
+    #itemshowcase {
+        width: 800px;
+    }
+
+    .itemenclosure {
+        width: 200px;
+        height: 200px;
+        float: left;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
+        margin: 20px;
+    }
+
+    .price {
+        text-align: center;
+    }
+
+    .title {
+        text-align: center;
+    }
+</style>
+
+<h1>Listing items</h1>
+
+<div id="itemshowcase">
+<% @items.each do |item| %>
+    <div class="itemenclosure">
+        <% if (item.item_images != nil) && (item.item_images.first != nil) && (item.item_images.first.image != nil)%>
+            <%= image_tag item.item_images.first.image.url(:thumb) %>
+        <% end %>
+        <div class="title"><%= link_to item.code + ' - ' + item.title, itemdetail_path(item) %></div>
+        <!-- <div class="title"><a href="#"><%= item.code %> - <%= item.title %></a></div> -->
+        <div class="price">$<%= item.price %></div>
+    </div>
+<% end %>
+</div>
+
+<br />

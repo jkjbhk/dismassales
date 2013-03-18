@@ -2,5 +2,15 @@
 
 <%= render 'form' %>
 
+<%= form_for @item_image, :url => saveitemimage_path, :html => { :multipart => true } do |form| %>
+  <%-# hidden_field_tag :item_id, @item_image.item_id %>
+  
+  <%= hidden_field(:item_image, :item_id) %>
+  <%= form.file_field :image %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
 <%= link_to 'Show', @item %> |
 <%= link_to 'Back', items_path %>

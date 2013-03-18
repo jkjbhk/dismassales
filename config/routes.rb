@@ -4,6 +4,11 @@ Dismassales::Application.routes.draw do
 
   resources :items
 
+  match 'store/' => 'storefront#index', :as => :storefront
+  match 'store/item/:id' => 'itemdetail#index', :as => :itemdetail
+  match 'item/saveimage' => 'items#add_image', :as => :saveitemimage
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

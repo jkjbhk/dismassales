@@ -35,6 +35,8 @@
   <%= @item.show_on_home %>
 </p>
 
+<%= image_tag @item_image.image.url(:thumb) %>
+
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
