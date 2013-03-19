@@ -1,26 +1,6 @@
 <style>
-	body {
-		background-color:#f0eadb
-	}
-
-    #categories {
-    	width: 176px;
-        height: 400px;
-        float: left;
-        border-width:2px;
-        border-style:solid;
-        border-color: #999;
-        margin: 10px;
-        clear: both; 
-        background-color:#fff;
-    }
-
     #wrap {
     	width: 1000px;
-    }
-
-    #header {
-
     }
 
     #content {
@@ -62,22 +42,6 @@
         text-align: center;
     }
 
-    #logotype {
-    	width: 200px;
-        height: 100px;
-        margin: 0px;
-        float: left;
-    }
-
-    #information {
-    	width: 760px;
-        height: 100px;
-        margin: 0px;
-        float: right;
-        text-align: left;
-        padding:20px;
-    }
-
     #description {
 		clear: both;
     }
@@ -97,20 +61,8 @@
 </script>
 
 <div id="wrap">
-	<div id="header">
-		<div id="logotype">
-			<%= image_tag("logo_small.png") %>
-		</div>
-		<div id="information">
-			Hello guest! | My orders | Login
-		</div>
-	</div>
-	<div id="categories">
-		<h5>Categories:</h5>
-		<% @categories.each do |category| %>
-			<%= link_to category.title, storefront_path(:category_id => category.id) %>
-		<% end %>
-	</div>
+	<%= render :partial => "/layouts/header" %>
+	<%= render :partial => "/layouts/categories", :locals => { :categories => @categories } %>
 
 	<div id="content">
 		<div id="thumbnails">
@@ -119,7 +71,7 @@
 					<% @item.item_images.each do |item_image| %>
 						<li>
 							<div class="thumbnailcontainer">
-								<%= link_to image_tag(item_image.image.url(:thumb)), {:action => 'index', :controller => 'items'}, :class => 'dock-item' %>
+								<%= link_to image_tag(item_image.image.url(:medium)), itemimage_path(item_image) %>
 							</div>
 						</li>
 					<% end %>

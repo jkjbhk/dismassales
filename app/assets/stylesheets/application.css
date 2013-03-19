@@ -16,5 +16,34 @@ body,
 html {
 	margin:0;
 	padding:0;
-	color:#000;
+	background-color:#f0eadb;
+}
+
+#categories {
+	width: 156px;
+    height: 400px;
+    float: left;
+    border-width:2px;
+    border-style:solid;
+    border-color: #999;
+    margin: 10px;
+    padding: 10px;
+    clear: both; 
+    background-color:#fff;
+}
+
+#logotype {
+	width: 200px;
+    height: 100px;
+    margin: 0px;
+    float: left;
+}
+
+#information {
+	width: 760px;
+    height: 100px;
+    margin: 0px;
+    float: right;
+    text-align: left;
+    padding:20px;
 }

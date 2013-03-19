@@ -6,6 +6,7 @@ Dismassales::Application.routes.draw do
 
   match 'store/' => 'storefront#index', :as => :storefront
   match 'store/item/:id' => 'itemdetail#index', :as => :itemdetail
+  match 'store/item/itemimage/:id' => 'itemdetail#image', :as => :itemimage
   match 'item/saveimage' => 'items#add_image', :as => :saveitemimage
 
 

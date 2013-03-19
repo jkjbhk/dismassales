@@ -4,7 +4,16 @@ class ItemdetailController < ApplicationController
     @categories = Category.all
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
+      format.json { render json: @item }
+    end
+  end
+
+  def image
+  	@item_image = ItemImage.find(params[:id])
+
+    respond_to do |format|
+      format.html {render "itemimage"}
       format.json { render json: @item }
     end
   end

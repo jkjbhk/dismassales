@@ -1,18 +1,26 @@
 <%-#Storefront view %>
 
 <style>
+    #wrap {
+        width: 1000px;
+    }
+
     #itemshowcase {
         width: 800px;
+        float: right;
     }
 
     .itemenclosure {
-        width: 200px;
-        height: 200px;
+        width: 160px;
+        height: 170px;
         float: left;
         border-width:2px;
         border-style:solid;
         border-color: #999;
         margin: 20px;
+        padding: 20px;
+        background-color:#fff;
+        text-align: center;
     }
 
     .price {
@@ -24,19 +32,22 @@
     }
 </style>
 
-<h1>Listing items</h1>
+<div id="wrap">
+    <%= render :partial => "/layouts/header" %>
+    <%= render :partial => "/layouts/categories", :locals => { :categories => @categories } %>
 
-<div id="itemshowcase">
-<% @items.each do |item| %>
-    <div class="itemenclosure">
-        <% if (item.item_images != nil) && (item.item_images.first != nil) && (item.item_images.first.image != nil)%>
-            <%= image_tag item.item_images.first.image.url(:thumb) %>
-        <% end %>
-        <div class="title"><%= link_to item.code + ' - ' + item.title, itemdetail_path(item) %></div>
-        <!-- <div class="title"><a href="#"><%= item.code %> - <%= item.title %></a></div> -->
-        <div class="price">$<%= item.price %></div>
+    <div id="itemshowcase">
+    <% @items.each do |item| %>
+        <div class="itemenclosure">
+            <div class="itemcontent">
+                <% if (item.item_images != nil) && (item.item_images.first != nil) && (item.item_images.first.image != nil)%>
+                    <%= image_tag item.item_images.first.image.url(:thumb) %>
+                <% end %>
+                <div class="title"><%= link_to item.code + ' - ' + item.title, itemdetail_path(item) %></div>
+                <!-- <div class="title"><a href="#"><%= item.code %> - <%= item.title %></a></div> -->
+                <div class="price"><%= number_to_currency(item.price) %></div>
+            </div>
+        </div>
+    <% end %>
     </div>
-<% end %>
 </div>
-
-<br />
