@@ -1,0 +1,6 @@
+<div id="categories">
+	<h5>Categories:</h5>
+	<% categories.each do |category| %>
+		<%= link_to category.title, storefront_path(:category_id => category.id) %>
+	<% end %>
+</div>
