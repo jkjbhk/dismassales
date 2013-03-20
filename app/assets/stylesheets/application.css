@@ -19,6 +19,17 @@ html {
 	background-color:#f0eadb;
 }
 
+#header {
+	width: 976px;
+	height: 130px;
+	margin: 10px;
+	border-width:2px;
+    border-style:solid;
+    border-color: #999;
+    float: left;
+    background-color:#fff;
+}
+
 #categories {
 	width: 156px;
     height: 400px;
@@ -33,15 +44,16 @@ html {
 }
 
 #logotype {
-	width: 200px;
-    height: 100px;
+	width: 400px;
+    height: 110px;
     margin: 0px;
+    padding: 0px;
     float: left;
 }
 
 #information {
-	width: 760px;
-    height: 100px;
+	width: 520px;
+    height: 110px;
     margin: 0px;
     float: right;
     text-align: left;
