@@ -1,3 +1,5 @@
+# implementation of the design 15 ­ Item Maintenance ­ Detail
+
 class ItemImage < ActiveRecord::Base
   attr_accessible :image, :item_id
 

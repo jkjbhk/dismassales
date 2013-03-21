@@ -1,3 +1,5 @@
+# implementation of the design item 3 ­ Item Detail screen
+
 class ItemdetailController < ApplicationController
   def index
     @item = Item.find(params[:id])

@@ -1,3 +1,5 @@
+#implementation of the design item 2 ­ Store Home screen and 3 ­ Item Detail screen and 15 ­ Item Maintenance ­ Detail
+
 class Item < ActiveRecord::Base
   belongs_to :category
   attr_accessible :code, :description, :enabled, :price, :show_on_home, :title, :category_id

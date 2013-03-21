@@ -1,3 +1,5 @@
+# implements the design items 16 ­ Category Maintenance ­ Search and 17 ­ Category Maintenance ­ Detail
+
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json

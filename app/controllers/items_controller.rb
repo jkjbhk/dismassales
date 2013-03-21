@@ -1,3 +1,5 @@
+# implementation of the design 14 ­ Item Maintenance ­ Search and 15 ­ Item Maintenance ­ Detail
+
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
@@ -87,8 +89,6 @@ class ItemsController < ApplicationController
   end
 
   def add_image
-    logger.info ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    logger.info params.inspect
     @item_image = ItemImage.new(params[:item_image])
     @item_image.save
 
