@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   has_many :item_images
 
   def self.home_items(category_id)
+  	# if there is filter for category, filter for this category, else shows the home items
   	if category_id != nil
   		items = Item.where("category_id = ?", category_id);
   	else

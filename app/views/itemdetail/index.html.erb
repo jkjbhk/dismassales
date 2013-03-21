@@ -68,6 +68,7 @@
 		<div id="thumbnails">
 			<div class="flexslider">
 				<ul class="slides">
+					<%-# draws the thumbnails, which will be changed later by flexslider js -%>
 					<% @item.item_images.each do |item_image| %>
 						<li>
 							<div class="thumbnailcontainer">
@@ -83,6 +84,7 @@
 			<%= @item.category.title %></br>
 			<div id="pricecartwrap">
 				<div id="pricewrap">
+					<%-# prints the price in the $##.## format -%>
 					<h3><%= number_to_currency(@item.price) %></h3>
 				</div>
 				<div id="addtocart">

@@ -44,7 +44,6 @@
                     <%= image_tag item.item_images.first.image.url(:thumb) %>
                 <% end %>
                 <div class="title"><%= link_to item.code + ' - ' + item.title, itemdetail_path(item) %></div>
-                <!-- <div class="title"><a href="#"><%= item.code %> - <%= item.title %></a></div> -->
                 <div class="price"><%= number_to_currency(item.price) %></div>
             </div>
         </div>

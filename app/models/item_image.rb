@@ -3,5 +3,6 @@ class ItemImage < ActiveRecord::Base
 
   belongs_to :item
 
+  #declation of the image, used bu the paperclip lib
   has_attached_file :image, :styles => { :medium => "156x192>", :thumb => "150x120>" }, :default_url => "/images/:style/missing.png"
 end
