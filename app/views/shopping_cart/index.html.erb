@@ -1,0 +1,86 @@
+<style>
+    #wrap {
+    	width: 1000px;
+    }
+
+    #content {
+    	width: 936px;
+        height: 400px;
+        float: right;
+        background-color:#fff;
+        padding: 20px;
+        margin: 10px;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
+    }
+
+    #shoppingcarttable {
+        width: 900px;
+        border: 1px solid #999;
+        padding: 0px;
+        margin: 0px;
+        border-collapse: collapse;
+    }
+
+    #shoppingcarttable th {
+        border: 1px solid #999;
+    }
+
+    #shoppingcarttable td {
+        border: 1px solid #999;
+        
+    }
+</style>
+
+<div id="wrap">
+	<%= render :partial => "/layouts/header" %>
+
+	<div id="content">
+		<%= form_tag(updatecart_path, :method => "post") do %>
+
+      <%-# If some error occurs in updating the cart shows an div with the errors -%>
+      <% if @cart.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@cart.errors.count, "error") %> prohibited the shopping cart from being updated:</h2>
+
+          <ul>
+          <% @cart.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <table id="shoppingcarttable">
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total Value</th>
+          <th>Remove</th>
+        </tr>
+
+      <% @cart.cart_items.each do |cartitem| %>
+        <tr>
+          <td><%= cartitem.item.title %></td>
+          <td><%= text_field_tag('quantity_' + cartitem.id.to_s, cartitem.quantity) %></td>
+          <td style="text-align: center"><%= number_to_currency(cartitem.item.price) %></td>
+          <td style="text-align: center"><%= number_to_currency(cartitem.item.price * cartitem.quantity) %></td>
+          <td style="text-align: center"><%= link_to image_tag('remove.png'), removeitem_path(cartitem) %></td>
+        </tr>
+      <% end %>
+      </table>
+      <%-# Only shows the Update Quantities button if the user have items in the shopping cart -%>
+      <% if @cart.cart_items.any? %>
+        <%= submit_tag "Update Quantities" %>
+      <% end %>
+    <% end %>
+    <%-# Only shows the checkout button if the user have items in the shopping cart -%>
+
+    <% if @cart.cart_items.any? %>
+      <%= button_to "Checkout", '', :method => "get" %>
+    <% end %>
+
+	</div>
+</div>

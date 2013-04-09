@@ -8,6 +8,10 @@ Dismassales::Application.routes.draw do
   match 'store/item/:id' => 'itemdetail#index', :as => :itemdetail
   match 'store/item/itemimage/:id' => 'itemdetail#image', :as => :itemimage
   match 'item/saveimage' => 'items#add_image', :as => :saveitemimage
+  match 'store/shoppingcart' => 'shopping_cart#index', :as => :shoppingcart
+  match 'store/shoppingcart/addtocart' => 'shopping_cart#addtocart', :as => :addtocart
+  match 'store/shoppingcart/updatecart' => 'shopping_cart#updatecart', :as => :updatecart
+  match 'store/shoppingcart/removeitem/:id' => 'shopping_cart#removeitem', :as => :removeitem
 
   root :to => 'storefront#index'
 

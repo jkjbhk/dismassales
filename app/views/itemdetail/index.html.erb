@@ -88,8 +88,11 @@
 					<h3><%= number_to_currency(@item.price) %></h3>
 				</div>
 				<div id="addtocart">
-					<%= text_field_tag('quantity', '1', :maxlength => 3, :size => 3) %>
-					<%= button_to "ADD TO CART", items_path, :method => "get" %>
+                    <%= form_tag({:controller => "shopping_cart", :action => "addtocart"}, :method => "post") do %>
+                        <%= hidden_field_tag 'item_id', @item.id %>
+                        <%= text_field_tag('quantity', '1', :maxlength => 3, :size => 3) %>
+                        <%= submit_tag("ADD TO CART") %>
+                    <% end %>
 				</div>
 			</div>
 		</div>
