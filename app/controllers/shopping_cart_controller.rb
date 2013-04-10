@@ -24,6 +24,8 @@ class ShoppingCartController < ApplicationController
 	def updatecart
 		@cart = Cart.createOrFind(request.session_options[:id])
 
+		@howmuchitems = Cart.howMuchItems(request.session_options[:id])
+
 		items_to_be_updated = Hash.new
 
 	    #parse parameters
