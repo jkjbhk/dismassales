@@ -1,0 +1,47 @@
+<style>
+    #wrap {
+    	width: 1000px;
+    }
+
+    #content {
+    	width: 936px;
+        
+        float: right;
+        background-color:#fff;
+        padding: 20px;
+        margin: 10px;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
+    }
+
+    #shoppingcarttable {
+        width: 900px;
+        border: 1px solid #999;
+        padding: 0px;
+        margin: 0px;
+        border-collapse: collapse;
+    }
+
+    #shoppingcarttable th {
+        border: 1px solid #999;
+    }
+
+    #shoppingcarttable td {
+        border: 1px solid #999;
+        
+    }
+</style>
+
+<div id="wrap">
+	<%= render :partial => "/layouts/header" %>
+
+	<div id="content">
+
+		<h1>Create order</h1>
+
+		<%= render 'form' %>
+
+		<%= link_to 'Back', shoppingcart_path %>
+	</div>
+</div>

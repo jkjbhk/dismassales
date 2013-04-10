@@ -51,11 +51,47 @@ html {
     float: left;
 }
 
-#information {
-	width: 520px;
+#rightheader {
+    width: 520px;
     height: 110px;
     margin: 0px;
     float: right;
+    padding:0px;
+}
+
+#information {
+	width: 520px;
+    height: 70px;
+    margin: 0px;
     text-align: left;
-    padding:20px;
+    padding:0px;
+}
+
+#shoppingcartbuttoncontainer
+{
+    width: 520px;
+    height: 60px;
+    margin: 0px;
+    text-align: left;
+    padding:0px;
+}
+
+#shoppingcartbutton
+{
+    width: 200px;
+    height: 20px;
+    margin: 0px;
+    text-align: center;
+    padding:5px;
+    background-color:#f0eadb;
+    border-width:2px;
+    border-style:solid;
+    border-color: #999;
+    display:block;
+    text-decoration: none;
+}
+
+.requiredfield
+{
+    color:red;
 }

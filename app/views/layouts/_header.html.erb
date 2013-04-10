@@ -6,7 +6,12 @@
 		<%= link_to image_tag("logo_small.png"), storefront_path %>
         <%= link_to image_tag("dismas_designs_logo.jpeg"), storefront_path %>
 	</div>
-	<div id="information">
-		Hello guest! | My orders | Login
+	<div id="rightheader">
+		<div id="information">
+			Hello guest! | My orders | Login
+		</div>
+		<div id="shoppingcartbuttoncontainer">
+			<a id="shoppingcartbutton" href="<%= shoppingcart_path %>"><%= pluralize(@howmuchitems, "item") %> in the Shopping Cart</a>
+		</div>
 	</div>
 </div>

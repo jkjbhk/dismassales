@@ -11,10 +11,16 @@ class CartItem < ActiveRecord::Base
 	validates :quantity, :numericality => { :greater_than_or_equal_to => 1}
 
 	def self.createCartItem(item, cart, quantity)
-		cart_item = CartItem.new
-		cart_item.cart = cart
-		cart_item.item = item
-		cart_item.quantity = quantity;
-		cart_item.save
+		cart_item = CartItem.where("item_id = ?", item.id).where("cart_id = ?", cart.id).first
+		if cart_item == nil
+			cart_item = CartItem.new
+			cart_item.cart = cart
+			cart_item.item = item
+			cart_item.quantity = quantity;
+			cart_item.save
+		else
+			cart_item.quantity = cart_item.quantity + quantity;
+			cart_item.save
+		end
 	end
 end

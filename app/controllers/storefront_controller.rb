@@ -4,6 +4,7 @@ class StorefrontController < ApplicationController
   def index
     @items = Item.home_items(params[:category_id])
     @categories = Category.all
+    @howmuchitems = Cart.howMuchItems(request.session_options[:id])
 
     respond_to do |format|
       format.html # index.html.erb

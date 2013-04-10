@@ -4,6 +4,7 @@ class ItemdetailController < ApplicationController
   def index
     @item = Item.find(params[:id])
     @categories = Category.all
+    @howmuchitems = Cart.howMuchItems(request.session_options[:id])
 
     respond_to do |format|
       format.html

@@ -46,4 +46,10 @@ class Cart < ActiveRecord::Base
 		end
 	cart
 	end
+
+	def self.howMuchItems(sessionid)
+		cart = createOrFind(sessionid);
+		count = CartItem.count(:conditions => ["cart_id = ?", cart.id])
+		count
+	end
 end

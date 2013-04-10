@@ -2,6 +2,7 @@ class ShoppingCartController < ApplicationController
 
 	def index
 		@cart = Cart.createOrFind(request.session_options[:id])
+		@howmuchitems = Cart.howMuchItems(request.session_options[:id])
 
 		respond_to do |format|
 	      format.html
@@ -13,7 +14,7 @@ class ShoppingCartController < ApplicationController
 
 		item = Item.find(params[:item_id])
 
-    	CartItem.createCartItem(item, cart, params[:quantity]);
+    	CartItem.createCartItem(item, cart, params[:quantity].to_i);
 
 		respond_to do |format|
 	    	format.html { redirect_to shoppingcart_url }
