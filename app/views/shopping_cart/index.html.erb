@@ -30,6 +30,16 @@
         border: 1px solid #999;
         
     }
+
+    #bottomtable {
+      width: 900px;
+    }
+
+    #checkoutbuttonenclose {
+      width: 450px;
+      float: right;
+      text-align: right;
+    }
 </style>
 
 <div id="wrap">
@@ -70,16 +80,17 @@
         </tr>
       <% end %>
       </table>
-      <%-# Only shows the Update Quantities button if the user have items in the shopping cart -%>
+    <%-# Only shows the Update Quantities button if the user have items in the shopping cart -%>
+    <div id="bottomtable">
       <% if @cart.cart_items.any? %>
-        <%= submit_tag "Update Quantities" %>
+          <%= submit_tag "Update Quantities" %>
+          <div id="checkoutbuttonenclose">
+            <b>Total value: <%= number_to_currency(@totalvalue) %></b><br/>
+            <button type="button" onclick="window.location.href = '/orders/new'; return false;">Checkout</button>
+          </div>
       <% end %>
     <% end %>
-    <%-# Only shows the checkout button if the user have items in the shopping cart -%>
-
-    <% if @cart.cart_items.any? %>
-      <%= button_to "Checkout", new_order_path, :method => "get" %>
-    <% end %>
+    </div>
 
 	</div>
 </div>

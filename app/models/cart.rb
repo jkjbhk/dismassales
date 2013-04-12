@@ -52,4 +52,12 @@ class Cart < ActiveRecord::Base
 		count = CartItem.count(:conditions => ["cart_id = ?", cart.id])
 		count
 	end
+
+	def calculateTotalValue
+		totalValue = 0;
+		cart_items.each do |cart_item|
+			totalValue = totalValue + (cart_item.item.price * cart_item.quantity)
+		end
+		totalValue
+	end
 end

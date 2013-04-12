@@ -3,6 +3,7 @@ class ShoppingCartController < ApplicationController
 	def index
 		@cart = Cart.createOrFind(request.session_options[:id])
 		@howmuchitems = Cart.howMuchItems(request.session_options[:id])
+		@totalvalue = @cart.calculateTotalValue
 
 		respond_to do |format|
 	      format.html
@@ -38,6 +39,8 @@ class ShoppingCartController < ApplicationController
 	    
 	    @cart = Cart.UpdateQuantities(@cart, items_to_be_updated);
 
+	    @totalvalue = @cart.calculateTotalValue
+
 	    respond_to do |format|
 	      format.html { render :action => "index" }
 	      format.json { render json: @cart }
@@ -49,6 +52,10 @@ class ShoppingCartController < ApplicationController
 		cart_item.destroy
 
 		@cart = Cart.createOrFind(request.session_options[:id])
+
+		@totalvalue = @cart.calculateTotalValue
+
+		@howmuchitems = Cart.howMuchItems(request.session_options[:id])
 		
 		respond_to do |format|
 	      format.html { render :action => "index" }
