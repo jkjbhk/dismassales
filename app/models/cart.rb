@@ -1,3 +1,5 @@
+# implementation of the design item 4 -­ Shopping Cart
+
 class Cart < ActiveRecord::Base
 	attr_accessible :sessionid
 
@@ -47,6 +49,7 @@ class Cart < ActiveRecord::Base
 	cart
 	end
 
+	#used to show do much items are in the shopping cart in the top of the page
 	def self.howMuchItems(sessionid)
 		cart = createOrFind(sessionid);
 		count = CartItem.count(:conditions => ["cart_id = ?", cart.id])

@@ -1,3 +1,5 @@
+# implementation of the design item 4 -­ Shopping Cart
+
 class ShoppingCartController < ApplicationController
 
 	def index

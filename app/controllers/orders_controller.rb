@@ -1,3 +1,7 @@
+# implementation of the design item 7 -­ Create New Address and 9 -­ Order completed
+
+# there is some unused code right now, but it will be used in the orders hstory later
+
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json

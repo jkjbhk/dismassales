@@ -1,3 +1,5 @@
+# implementation of the design item 4 -­ Shopping Cart
+
 class CartItem < ActiveRecord::Base
 	attr_accessible :cart, :item, :quantity
 
@@ -12,6 +14,7 @@ class CartItem < ActiveRecord::Base
 
 	def self.createCartItem(item, cart, quantity)
 		cart_item = CartItem.where("item_id = ?", item.id).where("cart_id = ?", cart.id).first
+		#if the item does not exist in the cart, create a new register, if it already exists update the existent
 		if cart_item == nil
 			cart_item = CartItem.new
 			cart_item.cart = cart
