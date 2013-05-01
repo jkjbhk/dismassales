@@ -1,0 +1,104 @@
+<style>
+    #itemstable {
+        width: 900px;
+        border: 1px solid #999;
+        padding: 0px;
+        margin: 0px;
+        border-collapse: collapse;
+    }
+
+    #itemstable th {
+        border: 1px solid #999;
+    }
+
+    #itemstable td {
+        border: 1px solid #999;
+        
+    }
+
+    #bottomtable {
+      width: 900px;
+    }
+
+    #checkoutbuttonenclose {
+      width: 450px;
+      float: right;
+      text-align: right;
+    }
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @order.name %>
+</p>
+
+<p>
+  <b>Surname:</b>
+  <%= @order.surname %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%= @order.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%= @order.address2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @order.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @order.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @order.zip %>
+</p>
+
+<p>
+  <b>Date Created:</b>
+  <%= @order.date_created %>
+</p>
+
+<p>
+  <b>Shipping Date:</b>
+  <%= @order.shipping_date %>
+</p>
+
+<table id="itemstable">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Value</th>
+    
+  </tr>
+
+<% @order.order_items.each do |orderitem| %>
+  <tr>
+    <td><%= orderitem.item.code %></td>
+    <td><%= orderitem.item.title %></td>
+    <td style="text-align: center"><%= orderitem.quantity %></td>
+    <td style="text-align: center"><%= number_to_currency(orderitem.item.price) %></td>
+    <td style="text-align: center"><%= number_to_currency(orderitem.item.price * orderitem.quantity) %></td>
+  </tr>
+<% end %>
+</table>
+
+<% if @order.shipping_date == nil %>
+  <button type="button" onclick="window.location.href = '/shiporder/<%= @order.id %>'; return false;">Mark as shipped</button>
+<% end %>
+
+</br>
+
+<%= link_to 'Back', orders_path %>

@@ -1,0 +1,14 @@
+# config/application.yml
+defaults: &defaults
+  login: jflesch-facilitator_api1.nd.edu
+  password: 1367267541
+  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AUIbOqgDyAHTfAGkSSBo6jodpdBG
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

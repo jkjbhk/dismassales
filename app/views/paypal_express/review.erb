@@ -1,0 +1,83 @@
+<style>
+    #wrap {
+      width: 1000px;
+    }
+
+    #content {
+      width: 936px;
+        
+        float: right;
+        background-color:#fff;
+        padding: 20px;
+        margin: 10px;
+        border-width:2px;
+        border-style:solid;
+        border-color: #999;
+    }
+</style>
+
+<div id="wrap">
+  <%= render :partial => "/layouts/header" %>
+
+  <div id="content">
+    <h1>Review Order Information</h1>
+
+    <% if @order && @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+ 
+    <h4>Your Total</h4>
+      <p>Subtotal: <%= number_to_currency @order_info[:subtotal] %></p>
+      <p>Shipping: <%= number_to_currency @order_info[:shipping] %></p>
+      <p>Total: <%= number_to_currency @order_info[:total] %></p>
+       
+    <h4>Shipping Address</h4>
+      
+      <p>
+        <b>Name:</b>
+        <%= @order_info[:shipping_address]['name']%>
+      </p>
+      <p>
+        <b>Address 1:</b>
+        <%= @order_info[:shipping_address]['address1']%>
+      </p>
+      <p>
+        <b>Address 2:</b>
+        <%= @order_info[:shipping_address]['address2']%>
+      </p>
+      <p>
+        <b>City:</b>
+        <%= @order_info[:shipping_address]['city']%>
+      </p>
+      <p>
+        <b>State:</b>
+        <%= @order_info[:shipping_address]['state']%>
+      </p>
+      <p>
+        <b>Country:</b>
+        <%= @order_info[:shipping_address]['country']%>
+      </p>
+      <p>
+        <b>Zipcode:</b>
+        <%= @order_info[:shipping_address]['zip']%>
+      </p>
+      <p>
+        <b>Your Email:</b>
+        <%= @order_info[:email] %>
+      </p>
+     
+
+      </br>
+       
+      <%= link_to 'Complete Purchase', paypal_express_purchase_path(:token => @order_info[:gateway_details][:token], :payer_id => @order_info[:gateway_details][:payer_id])%>
+
+  </div>
+</div>
