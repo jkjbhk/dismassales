@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function validateDate(field){
+	if(!field.value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/)){
+		field.value = '';
+	}
+}

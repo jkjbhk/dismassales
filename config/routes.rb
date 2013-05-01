@@ -15,6 +15,13 @@ Dismassales::Application.routes.draw do
   match 'store/shoppingcart/addtocart' => 'shopping_cart#addtocart', :as => :addtocart
   match 'store/shoppingcart/updatecart' => 'shopping_cart#updatecart', :as => :updatecart
   match 'store/shoppingcart/removeitem/:id' => 'shopping_cart#removeitem', :as => :removeitem
+  match 'searchorders/' => 'orders#index', :as => :order_search
+  match 'orderdetail/:id' => 'orders#detail', :as => :order_detail
+  match 'shiporder/:id' => 'orders#shiporder', :as => :shiporder
+
+  get "paypal_express/checkout"
+  get "paypal_express/review"
+  get "paypal_express/purchase"
 
   root :to => 'storefront#index'
 

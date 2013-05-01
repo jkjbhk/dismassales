@@ -37,4 +37,8 @@ Dismassales::Application.configure do
 
   #config for paperclip
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end

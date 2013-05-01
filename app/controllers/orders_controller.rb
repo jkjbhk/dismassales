@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.findByFilter(params)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,15 +82,20 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
-  def destroy
+  def detail
     @order = Order.find(params[:id])
-    @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url }
-      format.json { head :no_content }
+      format.html
+      format.json { render json: @order }
     end
+  end
+
+  def shiporder
+    @order = Order.find(params[:id])
+    @order.shipping_date = Date.today
+    @order.save
+
+    redirect_to order_detail_path(@order)
   end
 end

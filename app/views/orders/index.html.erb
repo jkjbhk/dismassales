@@ -1,7 +1,32 @@
 <h1>Listing orders</h1>
 
+<%= form_tag(order_search_path, :method => "post") do %>
+    <div class="field">
+        Number: <br />
+        <%= text_field_tag('number') %>
+    </div>
+    <div class="field">
+        Created between: <br />
+        <%= text_field_tag 'created1', '', :onchange => "validateDate(this)"  %> and <%= text_field_tag 'created2', '', :onchange => "validateDate(this)" %>
+    </div>
+    <div class="field">
+        Order Status: <br />
+        <%= check_box_tag 'open', 'open', true %> Open <%= check_box_tag 'shipped', 'shipped', true %> Shipped
+    </div>
+    <div class="field">
+        Shipped between: <br />
+        <%= text_field_tag 'shipped1', '', :onchange => "validateDate(this)"  %> and <%= text_field_tag 'shipped2', '', :onchange => "validateDate(this)" %>
+    </div>
+    <div class="field">
+        User Name: <br />
+        <%= text_field_tag('name') %>
+    </div>
+    <%= submit_tag "Search" %>
+<% end %>
+
 <table>
   <tr>
+    <th>Number</th>
     <th>Name</th>
     <th>Surname</th>
     <th>Address1</th>
@@ -9,13 +34,14 @@
     <th>City</th>
     <th>State</th>
     <th>Zip</th>
-    <th></th>
-    <th></th>
+    <th>Date Created</th>
+    <th>Shipping Date</th>
     <th></th>
   </tr>
 
 <% @orders.each do |order| %>
   <tr>
+    <td><%= order.id %></td>
     <td><%= order.name %></td>
     <td><%= order.surname %></td>
     <td><%= order.address1 %></td>
@@ -23,13 +49,11 @@
     <td><%= order.city %></td>
     <td><%= order.state %></td>
     <td><%= order.zip %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= order.date_created %></td>
+    <td><%= order.shipping_date %></td>
+    <td><%= link_to 'Show', order_detail_path(order) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Order', new_order_path %>

@@ -63,6 +63,7 @@
           </ul>
         </div>
       <% end %>
+      <p id="notice"><%= notice %></p>
 
       <table id="shoppingcarttable">
         <tr>
@@ -89,7 +90,8 @@
           <%= submit_tag "Update Quantities" %>
           <div id="checkoutbuttonenclose">
             <b>Total value: <%= number_to_currency(@totalvalue) %></b><br/>
-            <button type="button" onclick="window.location.href = '/orders/new'; return false;">Checkout</button>
+            
+            <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), :controller => 'paypal_express', :action => 'checkout' %>
           </div>
       <% end %>
     <% end %>
