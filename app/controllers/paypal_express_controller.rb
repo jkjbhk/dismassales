@@ -1,3 +1,4 @@
+#implementation of the design item 8 -­ Paypal payment
 class PaypalExpressController < ApplicationController
  	before_filter :assigns_gateway
  
@@ -12,6 +13,7 @@ class PaypalExpressController < ApplicationController
 		redirect_to @gateway.redirect_url_for(setup_response.token)
 	end
 
+	#called to show to the user a "confirmation" page, before conclude the order
 	def review
 	    if params[:token].nil?
 	      redirect_to home_url, :notice => 'Woops! Something went wrong!' 
@@ -32,6 +34,7 @@ class PaypalExpressController < ApplicationController
 	    @order_info = get_order_info gateway_response, @cart
 	  end
 
+	#after the user confirm, confirm with Paypal and generate the order in our system
 	def purchase
 	    if params[:token].nil? or params[:payer_id].nil?
 	      redirect_to home_url, :notice => "Sorry! Something went wrong with the Paypal purchase. Please try again later." 
@@ -44,14 +47,12 @@ class PaypalExpressController < ApplicationController
 	    purchase = @gateway.purchase total_as_cents, purchase_params
 	 
 	    if purchase.success?
-
 		  @order = Order.createFromCartAndPaypal(params[:order], @cart, @gateway.details_for(params[:token]))
 
 	      reset_session
 
 	      @howmuchitems = Cart.howMuchItems(request.session_options[:id])
 
-	      # you might want to destroy your cart here if you have a shopping cart 
       	  redirect_to :controller => 'orders', :action => 'show', :id => @order.id
 	    else
 	      notice = "Woops. Something went wrong while we were trying to complete the purchase with Paypal. Btw, here's what Paypal said: #{purchase.message}"
@@ -62,6 +63,7 @@ class PaypalExpressController < ApplicationController
  
 	private
 		def assigns_gateway
+			#the user and password come from the /config/application.yml with the help of the settingslogic gem
 			@gateway ||= PaypalExpressGateway.new(
 				:login => Settings.login,
 				:password => Settings.password,

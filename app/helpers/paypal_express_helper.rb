@@ -1,3 +1,4 @@
+#implementation of the design item 8 -­ Paypal payment
 module PaypalExpressHelper
   def get_setup_purchase_params(cart, request)
     subtotal, shipping, total = get_totals(cart)

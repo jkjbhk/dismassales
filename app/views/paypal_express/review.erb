@@ -1,3 +1,5 @@
+<%-# Implementation of the design item 8 -­ Paypal payment %>
+
 <style>
     #wrap {
       width: 1000px;
@@ -77,6 +79,7 @@
 
       </br>
        
+      <%-# Will make an final call to Paypal to conform the transaction %>
       <%= link_to 'Complete Purchase', paypal_express_purchase_path(:token => @order_info[:gateway_details][:token], :payer_id => @order_info[:gateway_details][:payer_id])%>
 
   </div>

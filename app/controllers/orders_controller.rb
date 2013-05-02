@@ -1,4 +1,4 @@
-# implementation of the design item 7 -­ Create New Address and 9 -­ Order completed
+# implementation of the design item 7 -­ Create New Address and 9 -­ Order completed and 12 -­ Track orders ­ Search and 13 -­ Track Orders ­ Detail:
 
 # there is some unused code right now, but it will be used in the orders hstory later
 
@@ -92,6 +92,7 @@ class OrdersController < ApplicationController
   end
 
   def shiporder
+    #puts shipping date in the order
     @order = Order.find(params[:id])
     @order.shipping_date = Date.today
     @order.save

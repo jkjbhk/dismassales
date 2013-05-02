@@ -1,3 +1,5 @@
+<%-# Implementation of the design item 13 -­ Track Orders ­ Detail %>
+
 <style>
     #itemstable {
         width: 900px;
@@ -74,6 +76,7 @@
   <%= @order.shipping_date %>
 </p>
 
+<%-# grid showing all the items of the order %>
 <table id="itemstable">
   <tr>
     <th>Code</th>
@@ -96,6 +99,7 @@
 </table>
 
 <% if @order.shipping_date == nil %>
+  <%-# This button calls an action that adds shipping date to the order %>
   <button type="button" onclick="window.location.href = '/shiporder/<%= @order.id %>'; return false;">Mark as shipped</button>
 <% end %>
 
