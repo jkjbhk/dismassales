@@ -64,6 +64,8 @@ class PaypalExpressController < ApplicationController
 	private
 		def assigns_gateway
 			#the user and password come from the /config/application.yml with the help of the settingslogic gem
+			ActiveMerchant::Billing::Base.integration_mode = :test
+
 			@gateway ||= PaypalExpressGateway.new(
 				:login => Settings.login,
 				:password => Settings.password,
