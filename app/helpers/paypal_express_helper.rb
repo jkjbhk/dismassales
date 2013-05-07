@@ -5,7 +5,7 @@ module PaypalExpressHelper
     return to_cents(total), {
       :ip => request.remote_ip,
       :return_url => url_for(:action => 'review', :only_path => false),
-      :cancel_return_url => 'http://localhost:3000/store/shoppingcart',
+      :cancel_return_url => url_for(:action => 'index', :controller => 'shopping_cart', :only_path => false),
       :subtotal => to_cents(subtotal),
       :shipping => to_cents(shipping),
       :handling => 0,
